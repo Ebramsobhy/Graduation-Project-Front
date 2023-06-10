@@ -1,0 +1,140 @@
+/* .gradient-form {
+    background: #fccb90;
+    background: -webkit-linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
+    background: linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
+  }
+
+  @media (min-width: 768px) {
+    .gradient-form {
+      height: 100vh !important;
+    }
+  }
+
+  @media (min-width: 769px) {
+    .card {
+      border-top-right-radius: .3rem;
+      border-bottom-right-radius: .3rem;
+    }
+  }
+   */
+
+
+
+   /* /////////////////////// */
+
+/*
+   /* Background gradient
+   .gradient-custom-2 {
+    /* fallback for old browsers
+    background: #fccb90;
+
+    /* Chrome 10-25, Safari 5.1-6
+    background: -webkit-linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
+
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+
+    background: linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
+  }
+   */
+   .gradient-custom-2
+   {
+    background-color:#3a95e4 ;
+   }
+
+  @media (min-width: 768px) {
+    .gradient-form {
+      height: 100vh !important;
+    }
+  }
+
+  @media (min-width: 769px) {
+    /* Rounded borders on larger screens */
+    .gradient-custom-2 {
+      border-top-right-radius: .3rem;
+      border-bottom-right-radius: .3rem;
+    }
+  }
+
+  /* Form styles */
+  .form-outline {
+    position: relative;
+  }
+
+  .form-control:focus:not([readonly]) {
+    box-shadow: none;
+  }
+
+  .form-outline .form-label {
+    position: absolute;
+    top: .75rem;
+    left: 1rem;
+    color: #495057;
+    font-weight: 500;
+    font-size: .875rem;
+    line-height: 1.5;
+    margin: 0;
+    transition: all .2s;
+    pointer-events: none;
+  }
+
+  .form-outline .form-control {
+    position: relative;
+    box-shadow: none;
+    padding-top: 1.5rem;
+    border-radius: 0;
+  }
+
+  .form-outline .form-control:focus {
+    border-color: #ee7724;
+    box-shadow: none;
+  }
+
+  .form-outline .form-control:focus ~ .form-label {
+    color: #ee7724;
+
+  }
+
+  /* Button styles */
+  .btn-primary {
+    background-color: #ee7724;
+    border-color: #ee7724;
+  }
+
+  .btn-primary:hover {
+    background-color: #d8363a;
+    border-color: #d8363a;
+  }
+
+  .btn-primary:focus {
+    box-shadow: none;
+    background-color: #d8363a;
+    border-color: #d8363a;
+  }
+
+  .btn-block {
+    margin-top: 1rem;
+  }
+
+  /* Additional styles for the login form */
+  .login-form {
+    background: hsla(0, 0%, 100%, 0.8);
+    backdrop-filter: blur(30px);
+  }
+
+  .login-form .card-body {
+    padding: 3rem;
+  }
+
+  .login-form h2 {
+    font-size: 2rem;
+  }
+
+  @media (max-width: 768px) {
+    /* Padding on smaller screens */
+    .login-form .card-body {
+      padding: 1.5rem;
+    }
+
+    .login-form h2 {
+      font-size: 1.5rem;
+    }
+  }
