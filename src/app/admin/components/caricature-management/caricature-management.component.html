@@ -1,0 +1,100 @@
+<div class="card-deck">
+  <div class="card col-lg-12 px-0 mb-4">
+    <div class="card-body">
+      <h5 class="card-title">Caricature</h5>
+      <div class="table-responsive">
+        <table class="table table-responsive center-aligned-table">
+          <thead>
+            <tr class="text-primary">
+              <th>ID</th>
+              <th>image</th>
+              <th>authorName</th>
+              <th>artistName</th>
+              <th>characterName</th>
+              <th>description</th>
+              <th>favourite</th>
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let caricature of caricatures" class="">
+              <td>{{ caricature._id }}</td>
+              <td>{{ caricature.image }}</td>
+              <td>{{ caricature.authorName.name }}</td>
+              <td>{{ caricature.artistName.name }}</td>
+              <td>{{ caricature.characterName.name }}</td>
+              <td>{{ caricature.description }}</td>
+              <td>{{ caricature.favourite }}</td>
+              <td>
+                <button class="btn btn-primary btn-sm w-50" (click)="saveCaricature(caricature)">Edit</button>
+              </td>
+              <td>
+                <button class="btn btn-danger btn-sm w-50" (click)="deleteCaricature(caricature)">Delete</button>
+              </td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td colspan="2">
+                <button class="btn btn-primary btn-sm w-50" (click)="openAddCaricatureModal()">Add</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Add Caricature Modal -->
+<div class="modal" [ngClass]="{ 'd-block': isAddingCaricature }">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Add Caricature</h5>
+        <button type="button" class="close" (click)="isAddingCaricature = false">
+          <span>&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!-- Add Caricature Form -->
+        <form (submit)="saveCaricature(newCaricature)">
+          <div class="form-group">
+            <label>Image:</label>
+            <input type="text" class="form-control" [(ngModel)]="newCaricature.image" name="image" required>
+          </div>
+          <div class="form-group">
+            <label>Author Name:</label>
+            <input type="text" class="form-control" [(ngModel)]="newCaricature.authorName.name" name="authorName" required>
+          </div>
+          <div class="form-group">
+            <label>Artist Name:</label>
+            <input type="text" class="form-control" [(ngModel)]="newCaricature.artistName.name" name="artistName" required>
+          </div>
+          <div class="form-group">
+            <label>Character Name:</label>
+            <input type="text" class="form-control" [(ngModel)]="newCaricature.characterName.name" name="characterName" required>
+          </div>
+          <div class="form-group">
+            <label>Description:</label>
+            <textarea class="form-control" [(ngModel)]="newCaricature.description" name="description" required></textarea>
+          </div>
+          <div class="form-group">
+            <label>Favourite:</label>
+            <input type="checkbox" class="form-check-input" [(ngModel)]="newCaricature.favourite" name="favourite">
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">Save</button>
+            <button type="button" class="btn btn-secondary" (click)="isAddingCaricature = false">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

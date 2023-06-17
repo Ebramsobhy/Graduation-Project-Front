@@ -1,113 +1,110 @@
-<!--
-<section dir="rtl" class="register-section">
-    <div class="bg-image"></div>
-
-    <div class="register-form-container">
-      <h2 class="form-title">قم بإنشاء حسابك الآن</h2>
-      <form>
-        <div class="form-row">
-          <div class="col-md-6">
-            <div class="form-group">
-              <label for="inputLastName">الاسم الأخير</label>
-              <input type="text" class="form-control" id="inputLastName" required>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="form-group">
-              <label for="inputFirstName">الاسم الأول</label>
-              <input type="text" class="form-control" id="inputFirstName" required>
-            </div>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="inputEmail">البريد الالكتروني</label>
-          <input type="email" class="form-control" id="inputEmail" required>
-        </div>
-
-        <div class="form-group">
-          <label for="inputPassword">كلمة السر</label>
-          <input type="password" class="form-control" id="inputPassword" required>
-        </div>
-
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" value="" id="subscribeCheckbox">
-          <label class="form-check-label" for="subscribeCheckbox">
-            اشترك لمتابعة الأخبار الجديدة
-          </label>
-        </div>
-
-        <button type="submit" class="btn btn-primary register-btn">إنشاء حساب</button>
-      </form>
-
-      <div class="form-footer">
-        <span>اذا كان لديك حساب بالفعل</span>
-        <button type="submit" class="btn btn-outline-primary login-btn">تسجيل الدخول</button>
+<div class="container" style="z-index:999">
+  <div class="row">
+    <div class="col-12">
+      <div class="alert alert-danger text-center">
+        {{ error }}
       </div>
     </div>
-  </section>
-   -->
-
+  </div>
+</div>
 
 <section dir="rtl" class="text-center">
-    <div class="p-5 bg-image" style="
+  <div class="p-5 bg-image" style="
           background-image: url('../../../../assets/img/login.jpg');
           height: 300px;
           "></div>
 
-    <div class="card mx-4 mx-md-5 shadow-5-strong" style="
+  <div class="card mx-4 mx-md-5 shadow-5-strong" style="
           margin-top: -100px;
           background: hsla(0, 0%, 100%, 0.8);
           backdrop-filter: blur(30px);
           ">
-        <div class="card-body py-5 px-md-5">
+    <div class="card-body py-5 px-md-5">
 
-            <div class="row d-flex justify-content-center">
-                <div class="col-lg-8">
-                    <h2 class="fw-bold mb-5">قم بإنشاء حسابك الآن</h2>
-                    <form [formGroup]="registerForm" (ngSubmit)="onSubmit(registerForm)">
-                        <div class="row">
-                            <div class="col-md-6 mb-4">
-                                <div class="form-outline">
-                                    <input type="text" id="firstName" class="form-control"
-                                        formControlName="firstName" />
-                                    <label class="form-label" for="firstName">الاسم الأول</label>
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-4">
-                                <div class="form-outline">
-                                    <input type="text" id="form3Example1" class="form-control"
-                                        formControlName="lastName" />
-                                    <label class="form-label" for="lastName">الاسم الأخير</label>
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <div class="form-outline mb-4">
-                            <input type="email" id="email" class="form-control" formControlName="email" />
-                            <label class="form-label" for="email">البريد الالكتروني</label>
-                        </div>
-
-                        <div class="form-outline mb-4">
-                            <input type="password" id="password" class="form-control" formControlName="password" />
-                            <label class="form-label" for="password">كلمة السر</label>
-                        </div>
-
-                        <button type="submit" class="btn btn-primary btn-block mb-4">
-                            إنشاء حساب
-                        </button>
-                        <div class="text-center">
-                            <p>اذا كان لديك حساب بالفعل</p>
-
-                            <button type="submit" class="btn btn-primary btn-block mb-4">
-                                تسجيل الدخول
-                            </button>
-                        </div>
-
-                    </form>
+      <div class="row d-flex justify-content-center">
+        <div class="col-lg-8">
+          <h2 class="fw-bold mb-5">قم بإنشاء حسابك الآن</h2>
+          <form [formGroup]="registerForm" (ngSubmit)="onSubmit(registerForm)">
+            <div class="row">
+              <div class="col-md-6 mb-4">
+                <div class="form-outline">
+                  <input type="text" id="firstName" class="form-control" formControlName="firstName" />
+                  <label class="form-label" for="firstName">الاسم الأول</label>
+                  <div class="error" *ngIf="
+                                                                          registerForm.controls['firstName']?.invalid &&
+                                                                          (registerForm.controls['firstName'].dirty ||
+                                                                            registerForm.controls['firstName'].touched)
+                                                                        ">
+                    <p *ngIf="registerForm.get('firstName')?.errors?.['required']" class="text-danger">
+                      هذا الحقل مطلوب*
+                    </p>
+                  </div>
                 </div>
+              </div>
+              <div class="col-md-6 mb-4">
+                <div class="form-outline">
+                  <input type="text" id="form3Example1" class="form-control" formControlName="lastName" />
+                  <label class="form-label" for="lastName">الاسم الأخير</label>
+                  <div class="error" *ngIf="
+                                                        registerForm.controls['lastName']?.invalid &&
+                                                        (registerForm.controls['lastName'].dirty ||
+                                                          registerForm.controls['lastName'].touched)
+                                                      ">
+                    <p *ngIf="registerForm.get('lastName')?.errors?.['required']" class="text-danger">
+                      هذا الحقل مطلوب*
+                    </p>
+                  </div>
+                </div>
+              </div>
+
             </div>
+
+            <div class="form-outline mb-4">
+              <input type="email" id="email" placeholder="example@example.com" class="form-control"
+                formControlName="email" />
+              <label class="form-label" for="email">البريد الالكتروني</label>
+              <div class="error" *ngIf="
+                                                                      registerForm.controls['email']?.invalid &&
+                                                                      (registerForm.controls['email'].dirty ||
+                                                                        registerForm.controls['email'].touched)
+                                                                    ">
+                <p *ngIf="registerForm.get('email')?.errors?.['required']" class="text-danger">
+                  هذا الحقل مطلوب*
+                </p>
+              </div>
+            </div>
+
+            <div class="form-outline mb-4">
+              <input type="password" id="password" class="form-control" formControlName="password" />
+              <label class="form-label" for="password">كلمة السر</label>
+              <div class="error" *ngIf="
+                                                                      registerForm.controls['password']?.invalid &&
+                                                                      (registerForm.controls['password'].dirty ||
+                                                                        registerForm.controls['password'].touched)
+                                                                    ">
+                <p *ngIf="registerForm.get('password')?.errors?.['required']" class="text-danger">
+                  هذا الحقل مطلوب*
+                </p>
+                <p *ngIf="registerForm.get('password')?.errors?.['minlength']" class="text-danger">
+                  عدد الحروف لا يقل عن 6*
+                </p>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block mb-4">
+              إنشاء حساب
+            </button>
+            <div class="text-center">
+              <p>هل لديك حساب بالفعل ؟.</p>
+
+              <a type="submit" routerLink="/login" class="btn btn-primary btn-block mb-4">
+                تسجيل الدخول
+              </a>
+            </div>
+
+          </form>
         </div>
+      </div>
     </div>
+  </div>
 </section>

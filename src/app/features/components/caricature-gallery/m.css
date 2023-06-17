@@ -1,0 +1,483 @@
+/* @import '../artist-list/artist-list.component.css'; */
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #1d1d1d;
+  }
+  
+  .card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .card:hover {
+    transform: translateY(-5px);
+    cursor: pointer;
+  }
+  
+  .card-img-top {
+    block-size: 350px;
+    height: 50vh;
+  }
+  
+  .favorite-button {
+    position: absolute;
+    width: 40px;
+    top: 10px;
+    right: 10px;
+    font-size: 28px;
+    cursor: pointer;
+    opacity: 0;
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .card:hover .favorite-button {
+    opacity: 1;
+    border-radius: 50%;
+  }
+  
+  .favorite-button:hover {
+    transform: scale(1.2);
+  }
+  
+  .favorite {
+    color: red;
+  }
+  
+  .card-body {
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .card-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #fff;
+  }
+  
+  .card-text {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #fff;
+  }
+  
+  .heart-icon path {
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .heart-icon:hover path {
+    fill: red;
+  }
+  
+  .heart {
+    display: inline-block;
+    position: relative;
+    width: 24px;
+    height: 24px;
+  }
+  
+  .heart svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    fill: #fff;
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .favorite .heart svg {
+    fill: #ff1493;
+    transform: scale(1.2);
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  .fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+  }
+  
+  @keyframes slideIn {
+    from {
+      transform: translateY(-50px);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+  
+  .slide-in {
+    animation: slideIn 0.5s ease-in-out;
+  }
+  
+  .card-img-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.7);
+    color: #1d1d1d;
+    transition: all 0.2s ease-in-out;
+    opacity: 0;
+  }
+  
+  .card:hover .card-img-overlay {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .card-img-overlay h5 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #1d1d1d;
+  }
+  
+  .card-img-overlay p {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #1d1d1d;
+  }
+  
+  .heart {
+    display: inline-block;
+    position: relative;
+    width: 24px;
+    height: 24px;
+    animation: heartPulse 1s ease-in-out infinite;
+    color: #ff1493;
+  }
+  
+  .heart svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    fill: #fff;
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .favorite .heart svg {
+    fill: #ff1493;
+    transform: scale(1.2);
+  }
+  
+  @keyframes heartPulse {
+    0% {
+      transform: scale(1);
+      color: #ff1493;
+    }
+    50% {
+      transform: scale(1.2);
+      color: #ff69b4;
+    }
+    100% {
+      transform: scale(1);
+      color: #ff1493;
+    }
+  }
+  
+  /* Add some color to the page */
+  
+  body {
+    background-color: #f6f6f6;
+    font-family: "Open Sans", sans-serif;
+    color: #333;
+  }
+  
+  .navbar {
+    background-color: #003366;
+    color: #fff;
+  }
+  
+  .nav-link {
+    color: #fff;
+  }
+  
+  .hero-section {
+    background-color: #ff69b4;
+    color: #fff;
+  }
+  
+  .hero-section h1 {
+    font-size: 48px;
+    font-weight: bold;
+  }
+  
+  .hero-section p {
+    font-size: 20px;
+    line-height: 1.5;
+  }
+  
+  .container {
+    background-color: #fff;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    margin-bottom: 30px;
+  }
+  
+  .card-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+  }
+  
+  .card-text {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #666;
+  }
+  
+  .card:hover {
+    transform: translateY(-5px);
+    cursor: pointer;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
+  }
+  
+  .card:hover .favorite-button {
+    opacity: 1;
+    border-radius: 50%;
+    background-color: #ff1493;
+    color: #fff;
+  }
+  
+  .favorite-button {
+    position: absolute;
+    width: 40px;
+    top: 10px;
+    right: 10px;
+    font-size: 28px;
+    cursor: pointer;
+    opacity: 0;
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .card-img-overlay {
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+  }
+  
+  .card-img-overlay h5 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #fff;
+  }
+  
+  .card-img-overlay p {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #fff;
+  }
+  
+  .btn-primary {
+    background-color: #ff1493;
+    border-color: #ff1493;
+  }
+  
+  .btn-primary:hover {
+    background-color: #ff69b4;
+    border-color: #ff69b4;
+  }
+  
+  .btn-secondary {
+    background-color: #003366;
+    border-color: #003366;
+  }
+  
+  .btn-secondary:hover {
+    background-color: #0066cc;
+    border-color: #0066cc;
+  }
+  
+
+
+
+
+
+
+  /* ************************************** */
+
+/* Heart Animation */
+@keyframes heartBeat {
+  0% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(1.2);
+  }
+  60% {
+    transform: scale(1);
+  }
+}
+
+/* Container */
+.container {
+  margin-top: 3rem;
+  color: #fff;
+}
+
+/* Title */
+h1 {
+  text-align: center;
+  font-size: 3rem;
+  font-weight: bold;
+  text-shadow: 2px 2px 0 #000;
+}
+
+/* Cards */
+.card {
+  background-color: #ffaa33;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.card-img-top {
+  border-radius: 10px 10px 0 0;
+}
+
+.card-body {
+  padding: 1.5rem;
+}
+
+.card-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.card-text {
+  font-size: 1.2rem;
+  line-height: 1.5;
+  text-align: justify;
+}
+
+/* Favorite Button */
+.favorite-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0.5rem;
+  background-color: #e64c4c;
+  border-radius: 0 0 0 10px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.favorite-button:hover {
+  background-color: #b22b2b;
+}
+
+.favorite {
+  background-color: #ff3f3f;
+}
+
+.heart {
+  animation: heartBeat 1s ease infinite;
+  color: #fff;
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+}
+
+.heart svg {
+  height: 100%;
+  width: 100%;
+}
+
+
+.heart:hover path {
+  fill: red;
+}
+.card:hover {
+  transform: scale(1.05);
+  transition: transform 0.3s ease-in-out;
+}
+.card {
+  opacity: 0;
+  animation: fadeIn 0.5s forwards;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card {
+  opacity: 0;
+  animation: slideIn 0.5s forwards;
+}
+
+@keyframes slideIn {
+  0% {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.favorite-button:hover .heart {
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+
+
+
+
+
+
+
+
+@media screen and (max-width: 767px) {
+  h1 {
+    font-size: 2.5rem;
+  }
+
+  .card-title {
+    font-size: 1.2rem;
+  }
+
+  .card-text {
+    font-size: 1rem;
+  }
+}
+
+  /* ***************************************** */

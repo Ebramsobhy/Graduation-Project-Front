@@ -1,0 +1,36 @@
+<div class="card-deck">
+  <div class="card col-lg-12 px-0 mb-4">
+    <div class="card-body">
+      <h5 class="card-title">Artist</h5>
+      <div class="table-responsive">
+        <table class="table center-aligned-table">
+          <thead>
+            <tr class="text-primary">
+              <th>ID</th>
+              <th>Name</th>
+              <th>Image</th>
+              <th>BirthDate</th>
+              <th>Bio</th>
+              <th>Favourite</th>
+              <th></th>
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="" *ngFor="let artist of artists">
+              <td>{{ artist._id }}</td>
+              <td>{{ artist.name }}</td>
+              <td><img style="width: 100px;height:100px" [src]="artist.image"></td>
+              <td>{{ artist.birthDate | date: 'yyyy-MM-dd' }}</td>
+              <td>{{ artist.bio }}</td>
+              <td>{{ artist.favourite ? 'Yes' : 'No' }}</td>
+              <td><a class="btn btn-primary btn-sm w-50%" (click)="editArtist(artist)">Edit</a></td>
+              <td><a class="btn btn-danger btn-sm w-50%" (click)="deleteArtist(artist)">Delete</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

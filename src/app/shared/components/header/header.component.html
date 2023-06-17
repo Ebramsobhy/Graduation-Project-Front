@@ -1,9 +1,69 @@
+<!-- For User -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" dir="rtl">
   <div class="container">
-    <a class="navbar-brand" href="#" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 36px; font-weight: bold;">
+    <a class="navbar-brand" [routerLink]="['/home']"
+      style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 36px; font-weight: bold;">
       <img class="logo" src="../../../../assets/img/logo.jpg"></a>
-    <button class="navbar-toggler" type="button" (click)="toggleNavbar()" [attr.aria-expanded]="isNavbarCollapsed ? 'false' : 'true'"
-      aria-controls="navbarNav" [attr.aria-label]="isNavbarCollapsed ? 'Toggle navigation' : 'Close navigation'">
+    <button class="navbar-toggler" type="button" (click)="toggleNavbar()"
+      [attr.aria-expanded]="isNavbarCollapsed ? 'false' : 'true'" aria-controls="navbarNav"
+      [attr.aria-label]="isNavbarCollapsed ? 'Toggle navigation' : 'Close navigation'">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" [ngClass]="{ 'show': !isNavbarCollapsed }">
+      <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/home']">الرئيسية</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/caricature-gallery']">معرض الكاريكاتير</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/artists']">الفنانون</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/authors']">المؤلفون</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/characters']">الشخصيات</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/blog']">المدونة</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/contact-us']">تواصل معنا</a>
+        </li>
+      </ul>
+
+      <ul *ngIf="!isLogged" class="navbar-nav d-flex justify-content-center align-items-center">
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" routerLink="/register">انشاء حساب</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" routerLink="/login">تسجيل الدخول</a>
+        </li>
+      </ul>
+
+      <ul *ngIf="isLogged" class="navbar-nav d-flex justify-content-center align-items-center">
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" (click)="logout()">تسجيل خروج</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+
+
+<!-- For Admin -->
+<!-- <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" dir="rtl">
+  <div class="container">
+    <a class="navbar-brand" href="#"
+      style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 36px; font-weight: bold;">
+      <img class="logo" src="../../../../assets/img/logo.jpg"></a>
+    <button class="navbar-toggler" type="button" (click)="toggleNavbar()"
+      [attr.aria-expanded]="isNavbarCollapsed ? 'false' : 'true'" aria-controls="navbarNav"
+      [attr.aria-label]="isNavbarCollapsed ? 'Toggle navigation' : 'Close navigation'">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" [ngClass]="{ 'show': !isNavbarCollapsed }">
@@ -40,4 +100,4 @@
       </ul>
     </div>
   </div>
-</nav>
+</nav> -->

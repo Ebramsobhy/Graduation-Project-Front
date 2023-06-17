@@ -1,0 +1,45 @@
+<div class="container-xxl py-5">
+    <div class="container mt-5">
+      <div
+        class="text-center mx-auto pb-4 wow fadeInUp"
+        data-wow-delay="0.1s"
+        style="max-width: 600px"
+      >
+        <section
+          id="breadcrumbs"
+          style="background-color: white"
+          class="breadcrumbs"
+        >
+          <div class="container mt-5">
+            <div class="d-flex justify-content-center align-items-center">
+            </div>
+          </div>
+        </section>
+      </div>
+      <div class="row gy-5 gx-4">
+        <div
+          class="col-md-6 col-lg-4 wow animated fadeInUp" style="--animation-delay: 0.7s;"
+          *ngFor="let caricature of caricatures"
+        >
+          <div class="service-item">
+            <img class="img-fluid" src="{{caricature.image}}" alt="" />
+            <div class="service-img">
+              <img class="img-fluid" src="{{caricature.image}}" alt="" />
+            </div>
+            <div class="service-detail">
+              <div class="service-title">
+                <hr class="w-25" />
+                <h3 class="mb-0">{{ caricature.authorName.name}}</h3>
+                <hr class="w-25" />
+              </div>
+              <div class="service-text">
+                <p class="text-white mb-0">{{ caricature.artistName.name }}</p>
+              </div>
+            </div>
+            <a class="btn btn-primary" href="">Read More</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

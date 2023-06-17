@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/core/authentication/authentication.service';
 @Component({
   selector: 'app-register',
@@ -9,10 +10,12 @@ import { AuthenticationService } from 'src/app/core/authentication/authenticatio
 export class RegisterComponent {
   registerForm!: FormGroup;
   submitted = false;
+  error!: string;
 
   constructor(
     private formBuilder: FormBuilder,
-    private authService: AuthenticationService
+    private authService: AuthenticationService,
+    private _Router: Router
   ) {
     this.registerForm = this.formBuilder.group({
       firstName: ['', Validators.required],
@@ -31,6 +34,7 @@ export class RegisterComponent {
     this.submitted = true;
 
     if (this.registerForm.invalid) {
+      this.error = "يوجد خطأ فى البيانات.";
       return;
     }
 
@@ -42,11 +46,11 @@ export class RegisterComponent {
       .register({ firstName, lastName, email, password, subscribe })
       .subscribe({
         next: (response) => {
-          console.log('User registered successfully:', response);
+          this._Router.navigate(["/login"]);
           // Redirect the user to the login page or show a success message
         },
         error: (error) => {
-          console.log('Registration failed:', error);
+          this.error = "يوجد خطأ فى البيانات.";
           // Show an error message to the user
         }
       });

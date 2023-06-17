@@ -1,0 +1,191 @@
+<!-- <div class="character-container">
+  <div class="character-header">
+    <h2>الشخصيات</h2>
+  </div>
+  <div class="character-list">
+    <div class="character-card" *ngFor="let character of characters">
+      <img [src]="character.image" alt="{{ character.name }}" class="character-image">
+      <div class="character-details">
+        <h4>{{ character.name }}</h4>
+        <p>تم إنشاؤه بواسطة: {{ character.author }}</p>
+        <p>تم رسمه بواسطة: {{ character.artist }}</p>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+
+<!--
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="character-container">
+        <div class="character-header">
+          <h2>الشخصيات</h2>
+        </div>
+        <div class="character-list">
+          <div class="character-card" *ngFor="let character of characters">
+            <img [src]="character.image" alt="{{ character.name }}" class="character-image">
+            <div class="character-details">
+              <h4>{{ character.name }}</h4>
+              <p>تم إنشاؤه بواسطة: {{ character.author }}</p>
+              <p>تم رسمه بواسطة: {{ character.artist }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+
+<!-- <div class="container character-container">
+  <div class="row">
+    <div class="col-12 character-header">
+      <h2>الشخصيات</h2>
+    </div>
+  </div>
+  <div class="row character-list">
+    <div class="col-md-6 col-lg-4 character-card" *ngFor="let character of characters">
+      <img [src]="character.image" alt="{{ character.name }}" class="character-image">
+            <h4 class="text-center">{{ character.name }}</h4>
+
+      <div class="character-details">
+        <p>تم إنشاؤه بواسطة: {{ character.author }}</p>
+        <p>تم رسمه بواسطة: {{ character.artist }}</p>
+      </div>
+
+    </div>
+  </div>
+</div> -->
+
+
+<!-- <div class="container character-container">
+  <div class="row">
+    <div class="col-12 character-header">
+      <h2>الشخصيات</h2>
+    </div>
+  </div>
+  <div class="row character-list">
+    <div class="col-sm-6 col-md-4 col-lg-3 character-card" *ngFor="let character of characters">
+      <div class="card">
+        <img [src]="character.image" alt="{{ character.name }}" class="card-img-top character-image">
+        <div class="card-body character-details">
+          <h5 class="card-title">{{ character.name }}</h5>
+          <p class="card-text">تم إنشاؤه بواسطة: {{ character.author }}</p>
+          <p class="card-text">تم رسمه بواسطة: {{ character.artist }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<!--
+<div class="container character-container">
+  <div class="row">
+    <div class="col-12 text-center">
+      <h2 class="character-header">الشخصيات</h2>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-md-6 col-lg-4 character-card" *ngFor="let character of characters">
+      <div class="card shadow rounded-3 border-0">
+        <img [src]="character.image" alt="{{ character.name }}" class="card-img-top character-image">
+        <div class="card-body character-details">
+          <h4 class="card-title text-center">{{ character.name }}</h4>
+          <p class="card-text">تم إنشاؤه بواسطة: {{ character.author }}</p>
+          <p class="card-text">تم رسمه بواسطة: {{ character.artist }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<section id="featured-services" class="featured-services">
+  <div class="container" data-aos="fade-up">
+    <div class="row">
+      <div
+        class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0"
+      >
+        <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
+          <div class="icon"><i class="bx bxl-dribbble"></i></div>
+          <h4 class="title"><a href="">Lorem Ipsum</a></h4>
+          <p class="description">
+            Voluptatum deleniti atque corrupti quos dolores et quas
+            molestias excepturi
+          </p>
+        </div>
+      </div>
+
+      <div
+        class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0"
+      >
+        <div class="icon-box" data-aos="fade-up" data-aos-delay="200">
+          <div class="icon"><i class="bx bx-file"></i></div>
+          <h4 class="title"><a href="">Sed ut perspiciatis</a></h4>
+          <p class="description">
+            Duis aute irure dolor in reprehenderit in voluptate velit esse
+            cillum dolore
+          </p>
+        </div>
+      </div>
+
+      <div
+        class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0"
+      >
+        <div class="icon-box" data-aos="fade-up" data-aos-delay="300">
+          <div class="icon"><i class="bx bx-tachometer"></i></div>
+          <h4 class="title"><a href="">Magni Dolores</a></h4>
+          <p class="description">
+            Excepteur sint occaecat cupidatat non proident, sunt in culpa
+            qui officia
+          </p>
+        </div>
+      </div>
+
+      <div
+        class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0"
+      >
+        <div class="icon-box" data-aos="fade-up" data-aos-delay="400">
+          <div class="icon"><i class="bx bx-world"></i></div>
+          <h4 class="title"><a href="">Nemo Enim</a></h4>
+          <p class="description">
+            At vero eos et accusamus et iusto odio dignissimos ducimus qui
+            blanditiis
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> -->
+
+<section id="featured-services" class="featured-services">
+  <div class="container" data-aos="fade-up">
+    <div class="row">
+      <div
+        *ngFor="let character of characters; let i = index"
+        class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0"
+      >
+        <div
+          class="icon-box"
+          data-aos="fade-up"
+          [attr.data-aos-delay]="(i + 1) * 100"
+        >
+          <div class="icon"><i class="bx bxl-dribbble"></i></div>
+          <h4 class="title">{{ character.name }}</h4>
+          <img
+            style="width: 300px; height: 300px"
+            src="{{character.image}}"
+            alt="{{character.name}}"
+          />
+          <p class="description">
+            Author: {{ character.author._id }}
+            <br />
+            Artist: {{ character.artist._id }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
