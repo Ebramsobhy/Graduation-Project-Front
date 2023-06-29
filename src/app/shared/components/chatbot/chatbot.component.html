@@ -1,0 +1,29 @@
+<div class="chat-bar-collapsible">
+  <button id="chat-button" type="button" class="collapsible" (click)="toggleChat()">
+    Chat with us!
+    <i id="chat-icon" style="color: #fff;" class="fa fa-fw fa-comments-o"></i>
+  </button>
+
+  <div class="content" [ngStyle]="{ maxHeight: isChatOpen ? '100%' : '0' }">
+    <div class="full-chat-block">
+      <div class="outer-container">
+        <div class="chat-container">
+          <div id="chatbox">
+
+          </div>
+
+          <div class="chat-bar-input-block">
+            <div id="userInput">
+              <input id="textInput" class="input-box" type="text" name="msg" placeholder="Tap 'Enter' to send a message"
+                [(ngModel)]="userInputText" (keypress)="handleKeyPress($event)">
+            </div>
+          </div>
+
+      <div id="chat-bar-bottom" >
+          <p></p>
+      </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
