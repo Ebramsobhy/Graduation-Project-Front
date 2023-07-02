@@ -13,6 +13,8 @@ export class ResponseService {
       return 'مجانًا يا فندم';
     } else if (input === 'scissors') {
       return 'rock';
+    } else {
+       return "من فضلك اختر موضوع من الموضوعات السابقة حتى نتمكن من مساعدتك"
     }
     
     return '';
