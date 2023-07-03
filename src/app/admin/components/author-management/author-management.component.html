@@ -1,34 +1,189 @@
 <div class="card-deck">
   <div class="card col-lg-12 px-0 mb-4">
     <div class="card-body">
-      <h5 class="card-title">Auther</h5>
+      <h5 class="card-title">Author</h5>
+
+      <!-- Add Author Modal -->
+      <div class="modal" [ngClass]="{ 'd-block': displayAddAuthorModal }">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Add Author</h5>
+              <button
+                type="button"
+                class="close"
+                (click)="closeAddAuthorModal()"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <!-- Add Author form -->
+              <!-- Add Author form -->
+<form (submit)="addAuthor(addAuthorForm)" #addAuthorForm="ngForm">
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input type="text" class="form-control" id="name" [(ngModel)]="newAuthor.name" name="name" required>
+    <div *ngIf="addAuthorForm.controls['name']?.invalid && addAuthorForm.controls['name']?.touched" class="text-danger">
+      Name is required.
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="image">Image</label>
+    <input type="file" class="form-control" id="image" (change)="onImageSelected($event)" accept="image/*" required>
+    <div *ngIf="addAuthorForm.controls['image']?.invalid && addAuthorForm.controls['image']?.touched" class="text-danger">
+      Image is required.
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="birthDate">Birth Date</label>
+    <input type="date" class="form-control" id="birthDate" [(ngModel)]="newAuthor.birthDate" name="birthDate" required>
+    <div *ngIf="addAuthorForm.controls['birthDate']?.invalid && addAuthorForm.controls['birthDate']?.touched" class="text-danger">
+      Birth Date is required.
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="bio">Bio</label>
+    <textarea class="form-control" id="bio" [(ngModel)]="newAuthor.bio" name="bio" rows="3" required></textarea>
+    <div *ngIf="addAuthorForm.controls['bio']?.invalid && addAuthorForm.controls['bio']?.touched" class="text-danger">
+      Bio is required.
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="favourite">Favourite</label>
+    <input type="checkbox" id="favourite" [(ngModel)]="newAuthor.favourite" name="favourite">
+  </div>
+  <div class="modal-footer">
+    <button type="submit" class="btn btn-primary">Save</button>
+    <button type="button" class="btn btn-secondary" (click)="closeAddAuthorModal()">Cancel</button>
+  </div>
+</form>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Edit Author Modal -->
+      <div class="modal" [ngClass]="{ 'd-block': displayEditModal }">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Edit Author</h5>
+              <button type="button" class="close" (click)="closeEditModal()">
+                <span>&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form (submit)="saveAuthorChanges()">
+                <div class="form-group">
+                  <label for="editName">Name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="editName"
+                    name="editName"
+                    [(ngModel)]="editedAuthor.name"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="editImage">Image</label>
+                  <input type="file" (change)="onImageSelected($event)" />
+                </div>
+                <div class="form-group">
+                  <label for="editBirthDate">Birth Date</label>
+                  <input
+                    type="date"
+                    class="form-control"
+                    id="editBirthDate"
+                    name="editBirthDate"
+                    [(ngModel)]="editedAuthor.birthDate"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="editBio">Bio</label>
+                  <textarea
+                    class="form-control"
+                    id="editBio"
+                    name="editBio"
+                    [(ngModel)]="editedAuthor.bio"
+                    rows="4"
+                    required
+                  ></textarea>
+                </div>
+                <div class="form-group">
+                  <label for="favourite">Favourite</label>
+                  <input
+                    type="checkbox"
+                    id="favourite"
+                    [(ngModel)]="editedAuthor.favourite"
+                    name="favourite"
+                  />
+                </div>
+                <div class="modal-footer">
+                  <button type="submit" class="btn btn-primary">Save</button>
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    (click)="cancelEditing()"
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div class="table-responsive">
-        <table class="table center-aligned-table">
+        <div class="text-left my-3">
+          <button class="btn btn-primary" (click)="openAddAuthorModal()">
+            Add Author
+          </button>
+        </div>
+
+        <table class="table">
           <thead>
             <tr class="text-primary">
               <th>ID</th>
               <th>Name</th>
               <th>Image</th>
-              <th>BirthDate</th>
+              <th>Birth Date</th>
               <th>Bio</th>
-              <th></th>
+              <th>Favourite</th>
               <th></th>
               <th></th>
             </tr>
           </thead>
           <tbody>
-
-            <tr class="" *ngFor="let auther of authers">
-              <td>{{auther._id}}</td>
-              <td>{{auther.name}}</td>
-              <td><img style="width: 100px;height:100px" src="http://localhost:5000/assets/upload/{{auther.image}}"></td>
-              <td>{{auther.birthDate | date}}</td>
-              <td>{{auther.bio}}</td>
-
-              <td><a  class="btn btn-primary btn-sm w-50%">Edit</a></td>
-              <td><a  class="btn btn-danger btn-sm w-50%">Delete</a></td>
+            <tr *ngFor="let Author of Authors">
+              <td>{{ Author._id }}</td>
+              <td>{{ Author.name }}</td>
+              <td>
+                <img style="width: 100px; height: 100px" [src]="Author.image" />
+              </td>
+              <td>{{ Author.birthDate | date }}</td>
+              <td>{{ Author.bio }}</td>
+              <td>{{ Author.favourite ? "Yes" : "No" }}</td>
+              <td>
+                <button
+                  class="btn btn-primary btn-sm w-50%"
+                  (click)="startEditing(Author)"
+                >
+                  Edit
+                </button>
+              </td>
+              <td>
+                <button
+                  class="btn btn-danger btn-sm w-50%"
+                  (click)="deleteAuthor(Author._id)"
+                >
+                  Delete
+                </button>
+              </td>
             </tr>
-
           </tbody>
         </table>
       </div>

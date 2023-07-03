@@ -9,28 +9,30 @@ import { AuthenticationService } from 'src/app/core/authentication/authenticatio
 })
 export class CaricatureService {
 
-    private apiUrl = 'http://localhost:5000/admin/caricature';
+    private baseUrl = 'http://localhost:5000/admin'; // Update the base URL
 
     constructor(private http: HttpClient, private AuthenticationService: AuthenticationService) { }
 
     headers = { "access-token": `${this.AuthenticationService.getToken()}` };
     requestOptions = { headers: this.headers };
 
-
     getCaricatures(): Observable<Caricature[]> {
-        return this.http.get<Caricature[]>(this.apiUrl, this.requestOptions);
+        const url = `${this.baseUrl}/caricatures`; // Use the updated URL
+        return this.http.get<Caricature[]>(url, this.requestOptions);
     }
 
     addCaricature(caricature: Caricature): Observable<Caricature> {
-        return this.http.post<Caricature>(this.apiUrl, caricature, this.requestOptions);
+        const url = `${this.baseUrl}/caricature`; // Use the updated URL
+        return this.http.post<Caricature>(url, caricature, this.requestOptions);
     }
 
     updateCaricature(caricature: Caricature, id: string): Observable<any> {
-        return this.http.put(this.apiUrl, caricature, this.requestOptions);
+        const url = `${this.baseUrl}/caricature/${id}`; // Use the updated URL
+        return this.http.put(url, caricature, this.requestOptions);
     }
 
     deleteCaricature(id: string): Observable<Caricature> {
-        const url = `${this.apiUrl}/${id}`;
+        const url = `${this.baseUrl}/caricature/${id}`; // Use the updated URL
         return this.http.delete<Caricature>(url, this.requestOptions);
     }
 }

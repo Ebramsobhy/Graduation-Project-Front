@@ -24,7 +24,7 @@ export class ArtistDetailsComponent implements OnInit {
 
   getArtistDetails() {
     const artistId = this.route.snapshot.params['id'];
-    this.artistListService.getArtist(artistId).subscribe(
+    this.artistListService.getArtistById(artistId).subscribe(
       (artist: Artist) => {
         this.artist = artist;
       },

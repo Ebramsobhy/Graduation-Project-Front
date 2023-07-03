@@ -8,7 +8,7 @@ import { AuthenticationService } from 'src/app/core/authentication/authenticatio
   providedIn: 'root'
 })
 export class ArtistService {
-  private apiUrl = 'http://localhost:5000/artist';
+  private baseUrl = 'http://localhost:5000/admin'; // Update the base URL
 
   constructor(private _HttpClient: HttpClient, private _AuthenticationService: AuthenticationService) { }
 
@@ -17,23 +17,31 @@ export class ArtistService {
   }
 
   getArtists(): Observable<Artist[]> {
+    const url = `${this.baseUrl}/artists`; // Use the updated URL
     const requestOptions = { headers: this.getHeaders() };
-    return this._HttpClient.get<Artist[]>(this.apiUrl, requestOptions);
+    return this._HttpClient.get<Artist[]>(url, requestOptions);
   }
 
-  createArtist(artist: Artist): Observable<Artist> {
+  getArtistById(id: string): Observable<Artist> {
+    const url = `${this.baseUrl}/artist/${id}`; // Use the updated URL
     const requestOptions = { headers: this.getHeaders() };
-    return this._HttpClient.post<Artist>(this.apiUrl, artist, requestOptions);
+    return this._HttpClient.get<Artist>(url, requestOptions);
+  }
+
+  createArtist(artist: any): Observable<Artist> {
+    const url = `${this.baseUrl}/artist`; // Use the updated URL
+    const requestOptions = { headers: this.getHeaders() };
+    return this._HttpClient.post<Artist>(url, artist, requestOptions);
   }
 
   updateArtist(id: string, artist: Artist): Observable<Artist> {
-    const url = `${this.apiUrl}/${id}`;
+    const url = `${this.baseUrl}/artist/${id}`; // Use the updated URL
     const requestOptions = { headers: this.getHeaders() };
     return this._HttpClient.put<Artist>(url, artist, requestOptions);
   }
 
   deleteArtist(id: string): Observable<void> {
-    const url = `${this.apiUrl}/${id}`;
+    const url = `${this.baseUrl}/artist/${id}`; // Use the updated URL
     const requestOptions = { headers: this.getHeaders() };
     return this._HttpClient.delete<void>(url, requestOptions);
   }

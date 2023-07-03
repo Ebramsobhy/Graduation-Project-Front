@@ -18,6 +18,7 @@ import { ChatbotComponent } from './components/chatbot/chatbot.component';
     
   ],
   imports: [CommonModule,AppRoutingModule,FormsModule ],
-  exports: [HeaderComponent, FooterComponent, ChatbotComponent],
+  exports: [HeaderComponent, FooterComponent,ContactUsComponent,
+    NotFoundComponent,ChatbotComponent],
 })
 export class SharedModule {}

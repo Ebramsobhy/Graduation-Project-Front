@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Artist } from 'src/app/features/Interfaces/artists'; 
-import { ArtistListService } from '../../Services/artist-list/artist-list.service';
+import { ArtistListService } from '../../Services/artist-list/artist-list.service'; 
 @Component({
   selector: 'app-artist-list',
   templateUrl: './artist-list.component.html',
@@ -20,5 +20,9 @@ export class ArtistListComponent implements OnInit{
       .subscribe(artists => this.artists = artists);
   }
 
+
+  toggleFavorite(artist: Artist): void {
+    artist.favourite = !artist.favourite;
+  }
   
 }

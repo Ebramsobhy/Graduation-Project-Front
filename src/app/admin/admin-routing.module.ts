@@ -12,12 +12,14 @@ import { AdminHomeComponent } from './components/admin-home/admin-home.component
 import { NotFoundComponent } from '../shared/components/not-found/not-found.component';
 const routes: Routes = [
   {
-    path: '',
+    path: '',component: AdminDashboardComponent,
+
     // canActivate: [AuthGuardGuard],
     children: [
       {
         path: 'admin-dashboard',
-        component: AdminDashboardComponent,
+        redirectTo: 'admin-home',
+        pathMatch: 'full',
       },
       {
         path: 'admin-home',

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
 import { Artist } from 'src/app/features/Interfaces/artists';
 import { ArtistService } from '../services/artist.service';
-import { HttpErrorResponse } from '@angular/common/http';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-artist-management',
@@ -11,6 +11,20 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class ArtistManagementComponent implements OnInit {
   artists: Artist[] = [];
+  displayEditModal: boolean = false;
+  displaySuccessModal: boolean = false;
+
+  displayAddArtistModal: boolean = false;
+
+  editedArtist: Artist = {
+    _id: '',
+    name: '',
+    image: '',
+    birthDate: new Date(),
+    bio: '',
+    favourite: false
+  };
+
   newArtist: Artist = {
     _id: '',
     name: '',
@@ -19,81 +33,46 @@ export class ArtistManagementComponent implements OnInit {
     bio: '',
     favourite: false
   };
-  isAddingArtist = false;
 
-  constructor(private router: Router, private artistService: ArtistService) { }
+  constructor(private artistService: ArtistService) {}
 
   ngOnInit(): void {
-    this.getArtists();
+    this.loadArtists();
   }
 
-  getArtists(): void {
+  onImageSelected(event: any) {
+    if (event.target.files && event.target.files.length) {
+      const file = event.target.files[0];
+      // Perform any necessary processing with the selected image file
+      // For example, you can use FileReader to read the file and update the editedArtist's image property
+      const reader = new FileReader();
+      reader.onload = () => {
+        const imageDataUrl = reader.result as string;
+        this.editedArtist.image = imageDataUrl;
+        this.newArtist.image = imageDataUrl; // Update newArtist's image property
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+
+  loadArtists(): void {
     this.artistService.getArtists().subscribe(
       (artists: Artist[]) => {
         this.artists = artists;
       },
-      (error: any) => {
-        console.error('Failed to retrieve artists:', error);
-      }
-    );
-  }
-
-  saveArtist(artist: Artist): void {
-    if (artist._id) {
-      this.artistService.updateArtist(artist._id, artist).subscribe(
-        (updatedArtist: Artist) => {
-          console.log('Artist updated:', updatedArtist);
-          this.getArtists(); // Refresh the artist list after update
-          this.resetNewArtist();
-        },
-        (error: any) => {
-          console.error('Failed to update artist:', error);
-        }
-      );
-    } else {
-      this.artistService.createArtist(artist).subscribe(
-        (createdArtist: Artist) => {
-          console.log('Artist created:', createdArtist);
-          this.getArtists(); // Refresh the artist list after create
-          this.resetNewArtist();
-        },
-        (error: any) => {
-          console.error('Failed to create artist:', error);
-        }
-      );
-    }
-  }
-
-  deleteArtist(artist: Artist): void {
-    this.artistService.deleteArtist(artist._id).subscribe(
-      () => {
-        console.log('Artist deleted:', artist);
-        // Remove the deleted artist from the local array
-        this.artists = this.artists.filter(a => a._id !== artist._id);
-        // Optionally, you can display a success message or perform any other action after deleting the artist
-      },
       (error: HttpErrorResponse) => {
-        console.error('Failed to delete artist:', error);
-        if (error.status === 404) {
-          console.error('Artist not found.');
-          // Optionally, you can display an error message or perform any other action if the artist is not found
-        } else {
-          console.error('An unexpected error occurred.');
-          // Optionally, you can display a generic error message or perform any other action for other error cases
-        }
+        console.log(error);
       }
     );
   }
-  
-  
 
-  editArtist(artist: Artist): void {
-    this.newArtist = { ...artist }; // Assign the selected artist to the newArtist for editing
-    this.isAddingArtist = true; // Show the add artist modal
+  startEditing(artist: Artist): void {
+    this.editedArtist = { ...artist };
+    this.displayEditModal = true;
   }
 
-  resetNewArtist(): void {
-    this.newArtist = {
+  cancelEditing(): void {
+    this.editedArtist = {
       _id: '',
       name: '',
       image: '',
@@ -101,6 +80,97 @@ export class ArtistManagementComponent implements OnInit {
       bio: '',
       favourite: false
     };
-    this.isAddingArtist = false; // Hide the add artist modal
+    this.displayEditModal= false;
+
+  }
+
+  saveArtistChanges(): void {
+    this.editedArtist.favourite = this.editedArtist.favourite || false;
+  
+    console.log(this.editedArtist);
+  
+    if (this.editedArtist._id) {
+      this.artistService.updateArtist(this.editedArtist._id, this.editedArtist).subscribe(
+        (response: Artist) => {
+          console.log(response);
+          this.loadArtists();
+        },
+        (error: HttpErrorResponse) => {
+          console.log(error);
+        }
+      );
+    }
+  
+    this.closeEditModal();
+  }
+  
+
+  deleteArtist(artistId: string): void {
+    this.artistService.deleteArtist(artistId).subscribe(
+      () => {
+        console.log(`Artist with ID ${artistId} deleted.`);
+        this.loadArtists();
+      },
+      (error: HttpErrorResponse) => {
+        console.log(error);
+      }
+    );
+  }
+
+  addArtist(addArtistForm: NgForm): void {
+    console.log('Add button clicked');
+  
+    if (addArtistForm.valid) {
+      const favouriteValue = addArtistForm.value.favourite;
+
+    // Assign the retrieved value to the newArtist object
+    this.newArtist.favourite = favouriteValue;
+
+      const formData = new FormData();
+      formData.append('name', this.newArtist.name);
+      formData.append('birthDate', this.newArtist.birthDate.toString());
+      formData.append('bio', this.newArtist.bio);
+      formData.append('image', this.newArtist.image);
+      formData.append('favourite', this.newArtist.favourite.toString()); // Convert to string before appending
+
+      this.artistService.createArtist(formData).subscribe(
+        (response: Artist) => {
+          console.log(response);
+          this.newArtist = {
+            _id: '',
+            name: '',
+            image: '',
+            birthDate: new Date(),
+            bio: '',
+            favourite: false
+          };
+          this.loadArtists();
+          this.displaySuccessModal = true;
+          this.displayAddArtistModal = false;
+        },
+        (error: HttpErrorResponse) => {
+          console.log(error);
+        }
+      );
+    }
+  }
+  
+  
+
+  closeSuccessModal() {
+    this.displaySuccessModal = false;
+  }
+
+  closeEditModal() {
+    this.displayEditModal = false;
+    this.cancelEditing();
+  }
+
+  openAddArtistModal() {
+    this.displayAddArtistModal = true;
+  }
+
+  closeAddArtistModal() {
+    this.displayAddArtistModal = false;
   }
 }

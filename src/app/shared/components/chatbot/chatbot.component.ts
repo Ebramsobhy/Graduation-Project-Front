@@ -1,6 +1,5 @@
 import { Component, Renderer2, ElementRef } from '@angular/core';
-import { ResponseService } from '../../../response.service';
-
+import { ResponseService } from 'src/app/features/Services/chatbot/response.service';
 @Component({
   selector: 'app-chatbot',
   templateUrl: './chatbot.component.html',

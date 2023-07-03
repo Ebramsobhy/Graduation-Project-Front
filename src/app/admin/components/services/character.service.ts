@@ -1,36 +1,50 @@
-// import { Injectable } from '@angular/core';
-// import { HttpClient } from '@angular/common/http';
-// import { Observable } from 'rxjs';
-// import { Character } from 'src/app/features/Interfaces/character'; 
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { AuthenticationService } from 'src/app/core/authentication/authentication.service';
+import { Character } from 'src/app/features/Interfaces/character';
 
-// @Injectable({
-//   providedIn: 'root',
-// })
-// export class CharacterService {
-//   private apiUrl = 'https://example.com/api/characters';
+@Injectable({
+  providedIn: 'root'
+})
+export class CharacterService {
+  private baseUrl = 'http://localhost:5000/admin'; // Update the base URL
 
-//   constructor(private http: HttpClient) {}
+  constructor(private httpClient: HttpClient, private _AuthenticationService: AuthenticationService) { }
 
-//   getCharacters(): Observable<Character[]> {
-//     return this.http.get<Character[]>(this.apiUrl);
-//   }
+  getHeaders(): { [header: string]: string } {
+    return { "access-token": `${this._AuthenticationService.getToken()}` };
+  }
 
-//   getCharacter(id: number): Observable<Character> {
-//     const url = `${this.apiUrl}/${id}`;
-//     return this.http.get<Character>(url);
-//   }
 
-//   addCharacter(character: Character): Observable<Character> {
-//     return this.http.post<Character>(this.apiUrl, character);
-//   }
+  getCharacters(): Observable<Character[]> {
+    const url = `${this.baseUrl}/characters`;
+    const requestOptions = { headers: this.getHeaders() };
+    return this.httpClient.get<Character[]>(url, requestOptions);
+  }
 
-//   updateCharacter(character: Character): Observable<Character> {
-//     const url = `${this.apiUrl}/${character._id}`;
-//     return this.http.put<Character>(url, character);
-//   }
+  getCharacterById(id: string): Observable<Character> {
+    const url = `${this.baseUrl}/character/${id}`;
+    const requestOptions = { headers: this.getHeaders() };
+    return this.httpClient.get<Character>(url, requestOptions);
+  }
 
-//   deleteCharacter(id: number): Observable<Character> {
-//     const url = `${this.apiUrl}/${id}`;
-//     return this.http.delete<Character>(url);
-//   }
-// }
+  createCharacter(character: any): Observable<Character> {
+    const url = `${this.baseUrl}/character`; // Use the updated URL
+    const requestOptions = { headers: this.getHeaders() };
+    return this.httpClient.post<Character>(url, character, requestOptions);
+  }
+  
+
+  updateCharacter(id: string, character: Character): Observable<Character> {
+    const url = `${this.baseUrl}/character/${id}`;
+    const requestOptions = { headers: this.getHeaders() };
+    return this.httpClient.put<Character>(url, character, requestOptions);
+  }
+
+  deleteCharacter(id: string): Observable<void> {
+    const url = `${this.baseUrl}/character/${id}`;
+    const requestOptions = { headers: this.getHeaders() };
+    return this.httpClient.delete<void>(url, requestOptions);
+  }
+}
