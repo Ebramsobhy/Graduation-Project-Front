@@ -16,8 +16,7 @@ export class ResponseService {
     } else {
        return "من فضلك اختر موضوع من الموضوعات السابقة حتى نتمكن من مساعدتك"
     }
-    
-    return '';
+
   }
 
 }
