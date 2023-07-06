@@ -1,0 +1,61 @@
+form .i {
+
+    width: 5%;
+    height: auto;
+
+}
+
+.btn {
+
+    border-radius: 40px;
+    width: 35%;
+
+}
+
+.f {
+    border-radius: 40px;
+    height: 100%;
+
+}
+
+.di {
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+
+}
+
+.navbar a:hover{
+
+background-color:gainsboro;
+transform: scale(1,1);
+
+}
+.col:hover{
+    box-shadow: 10px 10px 8px 10px #888888;
+    
+}
+h5{
+
+   
+ text-shadow: 5px 5px 5px grey ;
+font-size: 60px;
+font-family: 'Rubik Gemstones', cursive;
+}
+p{
+    font-family: Arial, Helvetica, sans-serif;
+    text-shadow: 5px 5px 5px grey ;
+}
+span{
+
+    font-family: Arial, Helvetica, sans-serif;
+    text-shadow: 5px 5px 5px grey ;
+
+}
+
+.services{
+  text-align: center;
+
+}

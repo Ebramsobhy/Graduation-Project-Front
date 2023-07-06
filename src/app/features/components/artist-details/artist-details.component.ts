@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Artist } from '../../Interfaces/artists'; 
-import { ArtistListService } from '../../Services/artist-list/artist-list.service'; 
+import { Artist } from '../../Interfaces/artists';
+import { ArtistListService } from '../../Services/artist-list/artist-list.service';
 
 @Component({
   selector: 'app-artist-details',
@@ -9,7 +9,7 @@ import { ArtistListService } from '../../Services/artist-list/artist-list.servic
   styleUrls: ['./artist-details.component.css']
 })
 export class ArtistDetailsComponent implements OnInit {
-  artist!: Artist;
+  artist: Artist | undefined;
 
   constructor(
     private route: ActivatedRoute,
@@ -18,8 +18,6 @@ export class ArtistDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.getArtistDetails();
-    console.log(this.artist);
-    
   }
 
   getArtistDetails() {
@@ -33,6 +31,4 @@ export class ArtistDetailsComponent implements OnInit {
       }
     );
   }
-
-  
 }

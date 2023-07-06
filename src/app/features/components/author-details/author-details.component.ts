@@ -1,12 +1,8 @@
-<<<<<<< HEAD
-import { Component } from '@angular/core';
-=======
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Author } from '../../Interfaces/author';
 import { AuthorListService } from '../../Services/author-list/author-list.service';
 
->>>>>>> a1e22e9d9e0b6a290434aed561b06b55df7c2057
 @Component({
   selector: 'app-author-details',
   templateUrl: './author-details.component.html',
